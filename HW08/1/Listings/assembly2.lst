@@ -1,0 +1,140 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Simple Keil tools demonstration program
+    2 00000000         ;Modified from J.R. Gibson (7/14/07)
+    3 00000000         ;Modified by D. Egbert ver. 2.0 1/28/10
+    4 00000000         ;
+    5 00000000                 AREA             Assembly1, CODE, READONLY
+    6 00000000                 EXPORT           __main
+    7 00000000         __main
+    8 00000000                 ENTRY
+    9 00000000 E59F3038 
+                       mystart LDR              r3,= 0x40001000 ;point to RAM l
+                                                            ocation
+   10 00000004         ;
+   11 00000004         ;*******************************************************
+                       *****************
+   12 00000004         ; For other programs (projects) replace the code below w
+                       ith new code.
+   13 00000004         ; Leave the code outside the ******* lines as is for all
+                        programs.
+   14 00000004         ; begin initialize data
+   15 00000004         
+   16 00000004 E59F4034 
+                       SUB64   LDR              r4,= 0x40001000 ;Load the addre
+                                                            sses into the regis
+                                                            ters
+   17 00000008 E59F5034        LDR              r5,= 0x40001004
+   18 0000000C E59F6034        LDR              r6,= 0x40001010
+   19 00000010 E59F7034        LDR              r7,= 0x40001014
+   20 00000014         
+   21 00000014 E5D41000        LDRB             r1, [r4]    ;Load the value at 
+                                                            the address stored 
+                                                            in r4
+   22 00000018 E5D62000        LDRB             r2, [r6]    ;Load the value at 
+                                                            the address stored 
+                                                            in r6
+   23 0000001C         
+   24 0000001C E0418002        SUB              r8, r1, r2  ;Subtract the great
+                                                            er half
+   25 00000020         
+   26 00000020 E5D51000        LDRB             r1, [r5]    ;Load the value at 
+                                                            the address stored 
+                                                            in r5
+   27 00000024 E5D72000        LDRB             r2, [r7]    ;Load the value at 
+                                                            the address stored 
+                                                            in r7
+   28 00000028         
+   29 00000028 E0419002        SUB              r9, r1, r2  ;Subtract the lesse
+                                                            r half
+   30 0000002C         
+   31 0000002C E59F401C        LDR              r4,= 0x40001020 ;Load the left 
+                                                            half address
+   32 00000030 E59F501C        LDR              r5,= 0x40001024 ;Load the right
+                                                             half address
+   33 00000034         
+   34 00000034 E5C48000        STRB             r8, [r4]    ;Store the differen
+                                                            ces at the respecti
+                                                            ve addresses
+   35 00000038 E5C59000        STRB             r9, [r5]
+   36 0000003C         
+   37 0000003C         
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   38 0000003C         ;*******************************************************
+                       *****************
+   39 0000003C         ;
+   40 0000003C         ; an infinite loop because the processor continues to fe
+                       tch instructions
+   41 0000003C EAFFFFFE 
+                       stop    BAL              stop
+   42 00000040                 END                          ;END directive to s
+                                                            how nothing more in
+                                                             file
+              40001000 
+              40001004 
+              40001010 
+              40001014 
+              40001020 
+              40001024 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\assembly2.d -o.\objects\assembly2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_
+v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\Philips --predefine="__EVAL SETA 1" -
+-predefine="__UVISION_VERSION SETA 521" --list=.\listings\assembly2.lst Assembl
+y2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Assembly1 00000000
+
+Symbol: Assembly1
+   Definitions
+      At line 5 in file Assembly2.s
+   Uses
+      None
+Comment: Assembly1 unused
+SUB64 00000004
+
+Symbol: SUB64
+   Definitions
+      At line 16 in file Assembly2.s
+   Uses
+      None
+Comment: SUB64 unused
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 7 in file Assembly2.s
+   Uses
+      At line 6 in file Assembly2.s
+Comment: __main used once
+mystart 00000000
+
+Symbol: mystart
+   Definitions
+      At line 9 in file Assembly2.s
+   Uses
+      None
+Comment: mystart unused
+stop 0000003C
+
+Symbol: stop
+   Definitions
+      At line 41 in file Assembly2.s
+   Uses
+      At line 41 in file Assembly2.s
+Comment: stop used once
+5 symbols
+339 symbols in table

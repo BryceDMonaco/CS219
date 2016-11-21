@@ -1,0 +1,123 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Simple Keil tools demonstration program
+    2 00000000         ;Modified from J.R. Gibson (7/14/07)
+    3 00000000         ;Modified by D. Egbert ver. 2.0 1/28/10
+    4 00000000         ;
+    5 00000000                 AREA             Assembly1, CODE, READONLY
+    6 00000000                 EXPORT           __main
+    7 00000000         __main
+    8 00000000                 ENTRY
+    9 00000000 E59F3030 
+                       mystart LDR              r3,= 0x40001000 ;point to RAM l
+                                                            ocation
+   10 00000004         ;
+   11 00000004         ;*******************************************************
+                       *****************
+   12 00000004         ; For other programs (projects) replace the code below w
+                       ith new code.
+   13 00000004         ; Leave the code outside the ******* lines as is for all
+                        programs.
+   14 00000004         ; begin initialize data
+   15 00000004 E59F102C 
+                       COMBINE LDR              r1,= 0x40001000
+   16 00000008 E59F202C        LDR              r2,= 0x40001001
+   17 0000000C E59F302C        LDR              r3,= 0x40001002
+   18 00000010 E59F402C        LDR              r4,= 0x40001003
+   19 00000014         
+   20 00000014 E5D11000        LDRB             r1, [r1]    ;Load the lower ord
+                                                            er of the words at 
+                                                            each address
+   21 00000018 E5D22000        LDRB             r2, [r2]
+   22 0000001C E5D33000        LDRB             r3, [r3]
+   23 00000020 E5D44000        LDRB             r4, [r4]
+   24 00000024         
+   25 00000024 E0815002        ADD              r5, r1, r2  ;Combine the first 
+                                                            two
+   26 00000028 E0835004        ADD              r5, r3, r4  ;Combine the second
+                                                             two
+   27 0000002C         
+   28 0000002C E59F6014        LDR              r6,= 0x40001004
+   29 00000030         
+   30 00000030 E5865000        STR              r5, [r6]    ;Store the full wor
+                                                            d at the address
+   31 00000034         
+   32 00000034         
+   33 00000034         ;*******************************************************
+                       *****************
+   34 00000034         ;
+   35 00000034         ; an infinite loop because the processor continues to fe
+                       tch instructions
+   36 00000034 EAFFFFFE 
+                       stop    BAL              stop
+   37 00000038                 END                          ;END directive to s
+                                                            how nothing more in
+                                                             file
+              40001000 
+              40001001 
+              40001002 
+              40001003 
+              40001004 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+bjects\assembly2.d -o.\objects\assembly2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_
+v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\Philips --predefine="__EVAL SETA 1" -
+-predefine="__UVISION_VERSION SETA 521" --list=.\listings\assembly2.lst Assembl
+y2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Assembly1 00000000
+
+Symbol: Assembly1
+   Definitions
+      At line 5 in file Assembly2.s
+   Uses
+      None
+Comment: Assembly1 unused
+COMBINE 00000004
+
+Symbol: COMBINE
+   Definitions
+      At line 15 in file Assembly2.s
+   Uses
+      None
+Comment: COMBINE unused
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 7 in file Assembly2.s
+   Uses
+      At line 6 in file Assembly2.s
+Comment: __main used once
+mystart 00000000
+
+Symbol: mystart
+   Definitions
+      At line 9 in file Assembly2.s
+   Uses
+      None
+Comment: mystart unused
+stop 00000034
+
+Symbol: stop
+   Definitions
+      At line 36 in file Assembly2.s
+   Uses
+      At line 36 in file Assembly2.s
+Comment: stop used once
+5 symbols
+339 symbols in table

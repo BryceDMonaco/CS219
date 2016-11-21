@@ -1,0 +1,170 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;Simple Keil tools demonstration program
+    2 00000000         ;Modified from J.R. Gibson (7/14/07)
+    3 00000000         ;Modified by D. Egbert ver. 2.0 1/28/10
+    4 00000000         ;
+    5 00000000                 AREA             Assembly1, CODE, READONLY
+    6 00000000                 EXPORT           __main
+    7 00000000         __main
+    8 00000000                 ENTRY
+    9 00000000 E59F3034 
+                       mystart LDR              r3,= 0x40001000 ;point to RAM l
+                                                            ocation
+   10 00000004         ;
+   11 00000004         ;*******************************************************
+                       *****************
+   12 00000004         ; For other programs (projects) replace the code below w
+                       ith new code.
+   13 00000004         ; Leave the code outside the ******* lines as is for all
+                        programs.
+   14 00000004         ; begin initialize data
+   15 00000004         
+   16 00000004 E59F1030 
+                       FIND    LDR              r1,= 0x40001000 ;Load the first
+                                                             address
+   17 00000008 E59F2030        LDR              r2,= 0x40001001 ;Load the secon
+                                                            d address
+   18 0000000C         
+   19 0000000C E5D11000        LDRB             r1, [r1]    ;Load the value sto
+                                                            red at the first ad
+                                                            dress
+   20 00000010 E5D22000        LDRB             r2, [r2]    ;Load the value sto
+                                                            red the the second 
+                                                            address
+   21 00000014         
+   22 00000014 E1510002        CMP              r1, r2      ;Compare the values
+                                                            
+   23 00000018 0A000001        BEQ              EQUAL       ;If equal go to EQU
+                                                            AL
+   24 0000001C CA000001        BGT              FIRST       ;If r1 > r2 go to F
+                                                            IRST
+   25 00000020 BA000002        BLT              LAST        ;If r2 > r1 go to L
+                                                            AST
+   26 00000024         
+   27 00000024 EA000003 
+                       EQUAL   BAL              stop        ;If equal end the p
+                                                            rogram
+   28 00000028         
+   29 00000028 E59F3014 
+                       FIRST   LDR              r3,= 0x40001002 
+                                                            ;Load the address
+   30 0000002C E5C31000        STRB             r1, [r3]    ;Store the value in
+                                                             r1 into the addres
+                                                            s at r3
+   31 00000030         
+   32 00000030 E59F300C 
+                       LAST    LDR              r3,= 0x40001002 
+                                                            ;Load the address
+   33 00000034 E5C32000        STRB             r2, [r3]    ;Store the value in
+                                                             r2 into the addres
+                                                            s at r3  
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   34 00000038         
+   35 00000038         
+   36 00000038         ;*******************************************************
+                       *****************
+   37 00000038         ;
+   38 00000038         ; an infinite loop because the processor continues to fe
+                       tch instructions
+   39 00000038 EAFFFFFE 
+                       stop    BAL              stop
+   40 0000003C                 END                          ;END directive to s
+                                                            how nothing more in
+                                                             file
+              40001000 
+              40001001 
+              40001002 
+Command Line: --debug --xref --diag_suppress=9931 --apcs=interwork --depend=.\o
+bjects\assembly2.d -o.\objects\assembly2.o -IC:\Keil_v5\ARM\RV31\INC -IC:\Keil_
+v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\Philips --predefine="__EVAL SETA 1" -
+-predefine="__UVISION_VERSION SETA 521" --list=.\listings\assembly2.lst Assembl
+y2.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Assembly1 00000000
+
+Symbol: Assembly1
+   Definitions
+      At line 5 in file Assembly2.s
+   Uses
+      None
+Comment: Assembly1 unused
+EQUAL 00000024
+
+Symbol: EQUAL
+   Definitions
+      At line 27 in file Assembly2.s
+   Uses
+      At line 23 in file Assembly2.s
+Comment: EQUAL used once
+FIND 00000004
+
+Symbol: FIND
+   Definitions
+      At line 16 in file Assembly2.s
+   Uses
+      None
+Comment: FIND unused
+FIRST 00000028
+
+Symbol: FIRST
+   Definitions
+      At line 29 in file Assembly2.s
+   Uses
+      At line 24 in file Assembly2.s
+Comment: FIRST used once
+LAST 00000030
+
+Symbol: LAST
+   Definitions
+      At line 32 in file Assembly2.s
+   Uses
+      At line 25 in file Assembly2.s
+Comment: LAST used once
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 7 in file Assembly2.s
+   Uses
+      At line 6 in file Assembly2.s
+Comment: __main used once
+mystart 00000000
+
+Symbol: mystart
+   Definitions
+      At line 9 in file Assembly2.s
+   Uses
+      None
+Comment: mystart unused
+stop 00000038
+
+Symbol: stop
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+   Definitions
+      At line 39 in file Assembly2.s
+   Uses
+      At line 27 in file Assembly2.s
+      At line 39 in file Assembly2.s
+
+8 symbols
+342 symbols in table

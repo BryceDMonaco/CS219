@@ -1,0 +1,1 @@
+This repository contains assembly code from a few homework assignments from CS219. Please note that I am keeping this repo as a record and it is not meant to demonstrate any sort of significant understanding of assembly. The platform that the code is meant for is specified in each HW directory.
